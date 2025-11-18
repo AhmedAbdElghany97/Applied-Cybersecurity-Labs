@@ -1,19 +1,26 @@
-# Bandit — Level 0 Write-Up
+# Bandit - Write-Up
+# Level 0
 
 ## Overview
 **Level: 0**
 
 This lab is to connect to the Bandit server using SSH command.
 
+**Lab Link**: https://overthewire.org/wargames/bandit/bandit0.html
+
 ---
 
 ## Step 1 — Understanding the Challenge
 <img width="2378" height="278" alt="image" src="https://github.com/user-attachments/assets/b0589745-f510-4fea-9a04-8235c2f23ff1" />
 
-Host: bandit.labs.overthewire.org
-Port: 2220
-Username: bandit0
-Password: bandit0
+**Host:** bandit.labs.overthewire.org
+
+**Port**: 2220
+
+**Username**: bandit0
+
+**Password**: bandit0
+
 ---
 
 ## Step 2 — Implementation
@@ -55,4 +62,8 @@ ssh bandit0@bandit.labs.overthewire.org -p 2220
 
 <img width="1664" height="838" alt="image" src="https://github.com/user-attachments/assets/71d41218-0904-4c56-8c80-0537e199eacd" />
 
-Password: bandit0
+password: bandit0
+
+<img width="1653" height="827" alt="server-connected" src="https://github.com/user-attachments/assets/281a62f6-fba3-4c24-b4c9-855f653650b4" />
+
+### Welldone! :)
