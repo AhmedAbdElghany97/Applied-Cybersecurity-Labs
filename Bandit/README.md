@@ -41,7 +41,7 @@ It is an excellent starting point for anyone learning Cybersecurity or preparing
 ---
 
 ## 👤 Author
-**Khaled**  
+**Ahmed**  
 Cybersecurity Enthusiast | Aspiring Penetration Tester
 
 ---
