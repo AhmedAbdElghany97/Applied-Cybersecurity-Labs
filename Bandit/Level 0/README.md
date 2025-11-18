@@ -1,7 +1,7 @@
 # Bandit — Level 0 Write-Up
 
 ## Overview
-**Level:** 0  
+**Level: 0**
 **Goal:**
 - Connect to the server using SSH command.
 **Skills Learned:**  
