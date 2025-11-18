@@ -1,20 +1,20 @@
-# Bandit — Level 1 Write-Up
+# Bandit — Level 0 Write-Up
 
-## 📌 Overview
-**Level:** X  
+## Overview
+**Level:** 0  
 **Goal:**
+- Connect to the server using SSH command.
 **Skills Learned:**  
-- Skill 1  
-- Skill 2  
-- Skill 3  
+- SSH command
+  
+---
+
+## Step 1 — Understanding the Challenge
+<img width="2378" height="278" alt="image" src="https://github.com/user-attachments/assets/b0589745-f510-4fea-9a04-8235c2f23ff1" />
 
 ---
 
-## 🔍 Step 1 — Understanding the Challenge
-
----
-
-## 🛰️ Step 2 — Enumeration
+## Step 2 — Implementation
 ### Command(s) used:
 ```bash
 # Example
