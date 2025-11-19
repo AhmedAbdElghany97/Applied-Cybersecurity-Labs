@@ -1,5 +1,5 @@
 # Bandit - Write-Up
-# Level 4
+# Level 3 → Level 4
 
 ## Overview
 
