@@ -44,7 +44,7 @@ bandit1@bandit:~$ cat -
 
 ```
 
-Still the same stuck, let try adding it with path.
+Still the same stuck, let's try adding it with path.
 
 ```bash
 bandit1@bandit:~$ cat ./-
