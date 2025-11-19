@@ -25,10 +25,7 @@ password: bandit0
 
 ### Check the options that i can use.
 ```bash
-whatis ls ; whatis cat
-```
-
-```markdown
+bandit0@bandit:~$ whatis ls ; whatis cat
 ls (1)               - list directory contents
 cat (1)              - concatenate files and print on the standard output
 ```
