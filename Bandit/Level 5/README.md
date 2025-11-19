@@ -3,7 +3,7 @@
 
 ## Overview
 
-rgdfgrg
+Deep search for a file with a specific conditions!
 
 **Lab Link**: https://overthewire.org/wargames/bandit/bandit6.html
 
