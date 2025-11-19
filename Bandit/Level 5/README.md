@@ -110,7 +110,7 @@ bandit5@bandit:~/inhere$ man find
 
 ```
 
-Good! Let's list all files with type regular file and filter only the text ones.
+Good! Let's list all files with type regular file f.
 
 ```bash
 bandit5@bandit:~/inhere$ find . -type f
