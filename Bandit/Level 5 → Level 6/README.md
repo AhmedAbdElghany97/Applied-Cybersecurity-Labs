@@ -1,5 +1,5 @@
 # Bandit - Write-Up
-# Level 6
+# Level 5 → Level 6
 
 ## Overview
 
