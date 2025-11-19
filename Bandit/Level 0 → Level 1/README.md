@@ -1,5 +1,5 @@
 # Bandit - Write-Up
-# Level 1
+# Level 0 → Level 1
 
 ## Overview
 
