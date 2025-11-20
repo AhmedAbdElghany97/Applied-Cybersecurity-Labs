@@ -17,7 +17,7 @@ Display the content of a hidden file located inside a specific directory.
 ssh bandit3@bandit.labs.overthewire.org -p 2220
 ```
 
-Password captured last level: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+Password captured from the last level: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 
 ---
 
@@ -73,4 +73,4 @@ Amazing! We found the password for the next level!
 
 password: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
 
-### Welldone! :)
+### Well Done! :)
