@@ -17,7 +17,7 @@ Deep search for a file with a specific conditions!
 ssh bandit5@bandit.labs.overthewire.org -p 2220
 ```
 
-Password captured last level: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+Password captured from the last level: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 
 ---
 
@@ -187,4 +187,4 @@ Great news! We found the password for the next level!
 
 password: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 
-### Welldone! :)
+### Well Done! :)
