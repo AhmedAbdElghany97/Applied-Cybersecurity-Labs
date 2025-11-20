@@ -17,7 +17,7 @@ Display the content that contains - character with its name.
 ssh bandit1@bandit.labs.overthewire.org -p 2220
 ```
 
-Password captured last level: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+Password captured from the last level: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 
 ---
 
@@ -55,4 +55,4 @@ Perfect! We found the password for the next level!
 
 password: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 
-### Welldone! :)
+### Well Done! :)
