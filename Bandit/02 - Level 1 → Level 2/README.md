@@ -55,4 +55,6 @@ Perfect! We found the password for the next level!
 
 password: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 
+<img width="2070" height="1095" alt="image" src="https://github.com/user-attachments/assets/88dd2856-cd50-42b0-a010-fa4882d1d201" />
+
 ### Well Done! :)
