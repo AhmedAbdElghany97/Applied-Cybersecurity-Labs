@@ -17,7 +17,7 @@ Deep search in the whole server, with a condition related to users and groups.
 ssh bandit6@bandit.labs.overthewire.org -p 2220
 ```
 
-Password captured last level: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+Password captured from the last level: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 
 ---
 
@@ -78,4 +78,4 @@ So, Genius! We found the password for the next level!
 
 password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 
-### Welldone! :)
+### Well Done! :)
