@@ -17,7 +17,7 @@ Display the content of file that its name contains spaces and also start with -.
 ssh bandit2@bandit.labs.overthewire.org -p 2220
 ```
 
-Password captured last level: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+Password captured from the last level: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 
 ---
 
@@ -47,4 +47,4 @@ Wow! We found the password for the next level!
 
 password: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 
-### Welldone! :)
+### Well Done! :)
