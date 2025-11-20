@@ -17,7 +17,7 @@ Search for a file that is a human-readable.
 ssh bandit4@bandit.labs.overthewire.org -p 2220
 ```
 
-Password captured last level: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+Password captured from the last level: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
 
 ---
 
@@ -69,4 +69,4 @@ Brilliant! We found the password for the next level!
 
 password: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 
-### Welldone! :)
+### Well Done! :)
