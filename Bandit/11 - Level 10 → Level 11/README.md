@@ -3,7 +3,7 @@
 
 ## Overview
 
-Search for human-readable text inside a file with binary type.
+Decode a base64 string to get the password.
 
 **Lab Link**: https://overthewire.org/wargames/bandit/bandit11.html
 
