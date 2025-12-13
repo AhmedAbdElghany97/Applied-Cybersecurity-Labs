@@ -49,7 +49,7 @@ It is an excellent starting point for anyone learning Cybersecurity or preparing
 - [x] Level 13 → Level 14
 - [x] Level 14 → Level 15
 - [x] Level 15 → Level 16
-- [ ] Level 16 → Level 17
+- [x] Level 16 → Level 17
 - [ ] Level 17 → Level 18
 - [ ] Level 18 → Level 19
 - [ ] Level 19 → Level 20
