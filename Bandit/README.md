@@ -1,3 +1,5 @@
+<img width="1107" height="467" alt="image" src="https://github.com/user-attachments/assets/dffd9ff5-2d42-4255-a33d-a615a9d388d1" />
+
 # OverTheWire — Bandit Write-Ups
 
 This folder contains my write-ups for the Bandit wargame from OverTheWire. Each level has its own folder with a clear explanation of the steps I used to reach the next level.
