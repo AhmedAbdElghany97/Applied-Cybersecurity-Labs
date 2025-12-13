@@ -1,3 +1,5 @@
+<img width="909" height="386" alt="image" src="https://github.com/user-attachments/assets/6adeef74-4fe7-47c6-92ba-0b6ce43a5a83" />
+
 # Hack The Box Write-Up - Meow
 
 > **Machine Name:** Meow
@@ -6,7 +8,7 @@
 >
 > **Ip:** 10.x.x.x
 >
-> **Difficulty:** Easy
+> **Difficulty:** Very Easy
 >
 > **OS:** Linux
 >
