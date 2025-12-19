@@ -437,6 +437,7 @@ Many matched exploits found!, let's try the ptrace one.
 
 Linux Kernel 2.2.x/2.4.x (RedHat) - 'ptrace/kmod' Local Privilege Escalation | linux/local/3.c
 
+## Escalation
 
 Check the exploit content then download it.
 
