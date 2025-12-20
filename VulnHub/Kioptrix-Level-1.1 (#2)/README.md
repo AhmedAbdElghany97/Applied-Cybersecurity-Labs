@@ -1,4 +1,4 @@
-
+<img width="687" height="323" alt="image" src="https://github.com/user-attachments/assets/c788d51e-a014-4aa3-a108-8449f5bbfc9e" />
 
 # VulnHub Write-Up - Kioptrix-Level-1.1 (#2)
 
