@@ -4,9 +4,8 @@
 
 # Cybersecurity-Journey-Writeups
 
----
-
-> **Author:** Ahmed Abd Elghany (**0xAhmedITO**)  
+> **Author:** Ahmed Abd Elghany (**0xAhmedITO**)
+> 
 > A structured collection of my cybersecurity learning journey: labs, walkthroughs, write-ups, and notes (focused on OSCP-style methodology).
 
 ---
