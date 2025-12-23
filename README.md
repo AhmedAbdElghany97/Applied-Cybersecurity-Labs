@@ -15,7 +15,7 @@
 ### VulnHub
 
 - Easy
-  - [Kioptrix-Level-#1](VulnHub/Easy/Kioptrix-Level-%231/README.md)
+  - [Kioptrix-Level (#1)](VulnHub/Easy/Kioptrix-Level%20(%231)/README.md)
   - [Kioptrix-Level-1.1 (#2)](VulnHub/Easy/Kioptrix-Level-1.1%20(%232)/README.md)
 
 ### Hack The Box
