@@ -1,5 +1,5 @@
 # Bandit - Write-Up
-# Level 18 → Level 19
+# Level 19 → Level 20
 
 ## Overview
 
